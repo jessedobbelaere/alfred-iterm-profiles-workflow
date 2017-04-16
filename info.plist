@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>re.jessedobbelae.itermprofile</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>D292CFF5-B03A-402D-9122-A2FBF267F494</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>10D45042-6F57-4E4D-98B6-9EFCE25EB0C6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Jesse Dobbelaere</string>
+	<key>description</key>
+	<string>Easily start an iTerm profile straight from Alfred</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Open iTerm Profile</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+  
+    tell application "System Events"
+    -- some versions might identify as "iTerm2" instead of "iTerm"
+    set isRunning to (exists (processes where name is "iTerm")) or (exists (processes where name is "iTerm2"))
+    end tell
+
+    tell application "iTerm"
+        activate
+
+        set hasNoWindows to ((count of windows) is 0)
+        if isRunning and hasNoWindows then
+          create window with default profile
+        end if
+        select first window
+
+        tell the first window
+            if isRunning and hasNoWindows is false then
+                create tab with profile q
+            end if
+        end tell
+    end tell
+  
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>10D45042-6F57-4E4D-98B6-9EFCE25EB0C6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>profile</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please Wait</string>
+				<key>script</key>
+				<string>import biplist
+import os
+import json
+
+# Query argument
+q = "{query}"
+
+# Read iTerm's preferences file
+iTermPreferencesPath = os.path.join(os.environ["HOME"], "Library", "Preferences", "com.googlecode.iterm2.plist")
+plist = biplist.readPlist(iTermPreferencesPath)
+
+# Extract profile data from plist
+profiles = {}
+for nb in plist['New Bookmarks']:
+    profileName = nb.get('Name')
+    profiles[nb.get('Name')] = {
+        'name': nb.get('Name'),
+        'command': nb.get('Command'),
+        'tags': nb.get('Tags')
+    }
+
+# Check if query matches any of the profile names
+if len(q) &gt; 1:
+    profiles = [profile for key, profile in profiles.items() if q.lower() in key.lower()]
+else:
+    profiles = [profile for key, profile in profiles.items()]
+
+# Generate json output for Alfred
+data = {'items': []}
+for profile in profiles:
+    data['items'].append({
+        'title': profile['name'],
+        'subtitle': profile['command'],
+        'arg': profile['name'],
+    })
+
+print json.dumps(data)
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>ItermProfileSearcher.py</string>
+				<key>subtext</key>
+				<string>Find and open an iTerm profile</string>
+				<key>title</key>
+				<string>Enter an iTerm profile name</string>
+				<key>type</key>
+				<integer>8</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D292CFF5-B03A-402D-9122-A2FBF267F494</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>10D45042-6F57-4E4D-98B6-9EFCE25EB0C6</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+		<key>D292CFF5-B03A-402D-9122-A2FBF267F494</key>
+		<dict>
+			<key>xpos</key>
+			<integer>110</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://www.jessedobbelae.re</string>
+</dict>
+</plist>

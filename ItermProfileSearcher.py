@@ -24,18 +24,16 @@ for nb in plist['New Bookmarks']:
 
 # Check if query matches any of the profile names
 if len(q) > 1:
-    profiles = [profile for key, profile in profiles.items() if q.lower() in key.lower()]
-else:
-    profiles = [profile for key, profile in profiles.items()]
+    profiles = {name: data for name, data in profiles.iteritems() if q.lower() in name.lower()}
 
 # Generate json output for Alfred
 data = {'items': []}
-for profile in profiles:
+for profileName, profileData in sorted(profiles.iteritems()):
     data['items'].append({
-        'uuid': profile['name'],
-        'title': profile['name'],
-        'subtitle': profile['command'],
-        'arg': profile['name'],
+        'uuid': profileName,
+        'title': profileName,
+        'subtitle': profileData['command'],
+        'arg': profileName,
     })
 
 print json.dumps(data).encode('utf-8-sig')

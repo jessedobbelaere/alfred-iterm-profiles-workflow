@@ -5,6 +5,12 @@ Search through your iTerm profiles using Alfred and easily open one. Extremely u
 
 **[Download workflow here](https://github.com/jessedobbelaere/alfred-iterm-profiles-workflow/releases)**
 
+Or install it with npm:
+
+```
+npm install -g alfred-iterm-profiles-workflow
+```
+
 ## Usage
 1. Enter keyword `profile` in Alfred, followed by a searchquery to find the profile you need.
 2. Hit <enter> and iTerm will open your profile

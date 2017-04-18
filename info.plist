@@ -39,19 +39,28 @@
 				<string>on alfred_script(q)
   
     tell application "System Events"
-    -- some versions might identify as "iTerm2" instead of "iTerm"
-    set isRunning to (exists (processes where name is "iTerm")) or (exists (processes where name is "iTerm2"))
+        -- some versions might identify as "iTerm2" instead of "iTerm"
+        set isRunning to (exists (processes where name is "iTerm")) or (exists (processes where name is "iTerm2"))
     end tell
 
     tell application "iTerm"
         activate
-
+        
+        if not (isRunning) then
+            delay 0.5
+            close the current window
+            create window with profile q
+        end if
+        
         set hasNoWindows to ((count of windows) is 0)
         if isRunning and hasNoWindows then
-          create window with default profile
+            delay 0.5
+            close the current window
+            create window with profile q
         end if
+        
         select first window
-
+        
         tell the first window
             if isRunning and hasNoWindows is false then
                 create tab with profile q
@@ -78,7 +87,7 @@ end alfred_script</string>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>68</integer>
+				<integer>0</integer>
 				<key>keyword</key>
 				<string>profile</string>
 				<key>queuedelaycustom</key>
@@ -92,44 +101,7 @@ end alfred_script</string>
 				<key>runningsubtext</key>
 				<string>Please Wait</string>
 				<key>script</key>
-				<string>import biplist
-import os
-import json
-
-# Query argument
-q = "{query}"
-
-# Read iTerm's preferences file
-iTermPreferencesPath = os.path.join(os.environ["HOME"], "Library", "Preferences", "com.googlecode.iterm2.plist")
-plist = biplist.readPlist(iTermPreferencesPath)
-
-# Extract profile data from plist
-profiles = {}
-for nb in plist['New Bookmarks']:
-    profileName = nb.get('Name')
-    profiles[nb.get('Name')] = {
-        'name': nb.get('Name'),
-        'command': nb.get('Command'),
-        'tags': nb.get('Tags')
-    }
-
-# Check if query matches any of the profile names
-if len(q) &gt; 1:
-    profiles = [profile for key, profile in profiles.items() if q.lower() in key.lower()]
-else:
-    profiles = [profile for key, profile in profiles.items()]
-
-# Generate json output for Alfred
-data = {'items': []}
-for profile in profiles:
-    data['items'].append({
-        'title': profile['name'],
-        'subtitle': profile['command'],
-        'arg': profile['name'],
-    })
-
-print json.dumps(data)
-</string>
+				<string></string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -171,7 +143,7 @@ print json.dumps(data)
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>https://www.jessedobbelae.re</string>
 </dict>

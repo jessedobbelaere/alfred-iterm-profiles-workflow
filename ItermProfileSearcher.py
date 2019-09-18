@@ -19,7 +19,7 @@ for nb in plist['New Bookmarks']:
     profiles[nb.get('Name')] = {
         'name': nb.get('Name'),
         'command': nb.get('Command'),
-		'icon': nb.get('Custom Icon Path'),
+        'icon': nb.get('Custom Icon Path'),
         'tags': nb.get('Tags')
     }
 
@@ -34,7 +34,7 @@ for profileName, profileData in sorted(profiles.iteritems()):
         'uuid': profileName,
         'title': profileName,
         'subtitle': (str(profileData['tags']) if profileData['tags'] else '') + profileData['command'],
-		'icon': {'path': profileData['icon']} if profileData['icon'] else 'icon.png',
+        'icon': {'path': profileData['icon']} if profileData['icon'] else 'icon.png',
         'arg': profileName,
     })
 

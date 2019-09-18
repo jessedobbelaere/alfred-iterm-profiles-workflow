@@ -1,6 +1,6 @@
 {
     "name": "alfred-iterm-profiles-workflow",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "An Alfred 3 workflow to easily search and open iTerm profiles",
     "repository": {
         "type": "git",

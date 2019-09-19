@@ -1,10 +1,15 @@
 #!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 
 from lib import biplist
 import os
 import json
 import sys
 from workflow import Workflow, ICON_WARNING, MATCH_SUBSTRING
+
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 
 def read_profiles():
@@ -25,7 +30,7 @@ def read_profiles():
 
 
 def filter_key_for_profile(profile):
-    return '{} {}'.format(profile['name'], profile['tags'])
+    return profile['name'] + ' ' + str(profile['tags'])
 
 
 def sort_key_for_profile(profile):

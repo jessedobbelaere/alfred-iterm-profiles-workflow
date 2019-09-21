@@ -8,12 +8,6 @@
 
 **[Download workflow here](https://github.com/jessedobbelaere/alfred-iterm-profiles-workflow/releases)**
 
-Or install it with npm:
-
-```
-npm install -g alfred-iterm-profiles-workflow
-```
-
 ## ⚙️ Usage
 
 1. Enter keyword `profile` in Alfred, followed by a searchquery to find the profile you need.

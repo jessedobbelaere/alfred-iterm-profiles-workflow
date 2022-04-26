@@ -1,4 +1,4 @@
-# iTerm Profiles Workflow for [Alfred 3](http://www.alfredapp.com)
+# iTerm Profiles Workflow for [Alfred](http://www.alfredapp.com)
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 

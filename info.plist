@@ -8,11 +8,11 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>D292CFF5-B03A-402D-9122-A2FBF267F494</key>
+		<key>7D9DF57A-5DF9-5DB9-AB88-88DAC6AD7FB1</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>10D45042-6F57-4E4D-98B6-9EFCE25EB0C6</string>
+				<string>5ACF9B16-49E7-41E0-925D-A0C40D5DEBED</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -75,7 +75,7 @@ end alfred_script</string>
 			<key>type</key>
 			<string>alfred.workflow.action.applescript</string>
 			<key>uid</key>
-			<string>10D45042-6F57-4E4D-98B6-9EFCE25EB0C6</string>
+			<string>5ACF9B16-49E7-41E0-925D-A0C40D5DEBED</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -84,6 +84,12 @@ end alfred_script</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -105,7 +111,7 @@ end alfred_script</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string>ItermProfileSearcher.py</string>
+				<string>entrypoint.py</string>
 				<key>subtext</key>
 				<string>Find and open an iTerm profile</string>
 				<key>title</key>
@@ -118,33 +124,35 @@ end alfred_script</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>D292CFF5-B03A-402D-9122-A2FBF267F494</string>
+			<string>7D9DF57A-5DF9-5DB9-AB88-88DAC6AD7FB1</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Search through your iTerm profiles using Alfred and easily open one. Extremely useful if you have a lot of profiles, e.g. with an SSH command for each server. See: https://github.com/jessedobbelaere/alfred-iterm-profiles-workflow</string>
+	<string>Search through your iTerm profiles using Alfred and easily open one. Extremely useful if you have a lot of profiles, e.g. with an SSH command for each server.</string>
 	<key>uidata</key>
 	<dict>
-		<key>10D45042-6F57-4E4D-98B6-9EFCE25EB0C6</key>
+		<key>5ACF9B16-49E7-41E0-925D-A0C40D5DEBED</key>
 		<dict>
 			<key>xpos</key>
-			<integer>350</integer>
+			<integer>435</integer>
 			<key>ypos</key>
-			<integer>100</integer>
+			<integer>120</integer>
 		</dict>
-		<key>D292CFF5-B03A-402D-9122-A2FBF267F494</key>
+		<key>7D9DF57A-5DF9-5DB9-AB88-88DAC6AD7FB1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>110</integer>
+			<integer>210</integer>
 			<key>ypos</key>
-			<integer>100</integer>
+			<integer>120</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string>2.0.0</string>
 	<key>webaddress</key>
-	<string>https://www.jessedobbelae.re</string>
+	<string>https://github.com/jessedobbelaere/alfred-iterm-profiles-workflow</string>
 </dict>
 </plist>

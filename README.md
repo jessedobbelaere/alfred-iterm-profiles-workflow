@@ -14,19 +14,3 @@
 2. Hit <enter> and iTerm will open your profile
 
 ![Preview](https://i.imgur.com/TKlKLct.png)
-
-## 🔨 Development
-
-When developing an Alfred workflow, you can call `alfred-link` directly from your cli. Use `npx` to call the local installation of `alfred-link` and `alfred-unlink`.
-
-```
-$ npx alfred-link
-```
-
-This will create a symlink in the Alfred workflows directory pointing to your development location without transforming `info.plist`.
-
-To remove the symlink afterwards, you can call `alfred-unlink`.
-
-```
-$ npx alfred-unlink
-```
